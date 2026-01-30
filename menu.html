@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Füd • Restaurant Menu</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link
+      rel="shortcut icon"
+      href="../img/Amala and Vegetable soup.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo" style="text-decoration: none">Füd</h1>
+        <nav class="display-none">
+          <a href="index.html">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact Us</a>
+          <a href="order.html">My Order (<span id="cart-count">0</span>)</a>
+          <a href="feedback.html">Feedback</a>
+        </nav>
+
+        <!-- Hamburger Menu Button (Visible < 768px) -->
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Dropdown Menu (Overlay, Toggled by JS) -->
+    <div class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact Us</a>
+      <a href="order.html">My Order (<span id="cart-count">0</span>)</a>
+      <a href="feedback.html">Feedback</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="full-page-bg" id="hero"></section>
+    <div class="content-container">
+      <div class="hero-heading">
+        <h1 style="font-size: 3rem">Taste the Best of Local Cuisine</h1>
+        <p style="font-size: 1.2rem">
+          Welcome to Füd, a native restaurant and more, where you can order
+          mouthwatering dishes and drinks.
+        </p>
+        <p style="font-size: 1.2rem">What do you want to get from us today?</p>
+      </div>
+      <!-- <div class="dim-blur-overlay"></div> -->
+      <img
+        src="../img/Eforiro.jpg"
+        alt="Yam and Egg"
+        width="720"
+        height="716"
+      />
+    </div>
+
+    <main class="container">
+      <section class="hero" style="text-align: center">
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Explore our delicious menu and order your favorites!</p>
+      </section>
+
+      <section class="categories">
+        <h3>Categories</h3>
+        <div id="category-filter" class="category-buttons">
+          <button class="category-btn active" data-category="all">
+            All Items
+          </button>
+        </div>
+      </section>
+
+      <section class="menu">
+        <h3>Menu Items</h3>
+        <div id="menu-grid" class="menu-grid">
+          <div class="loading">Loading menu...</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Success Toast Notification -->
+    <div id="toast-notification" class="toast-notification">
+      <div class="toast-content">
+        <span class="toast-icon">✅</span>
+        <span id="toast-message"></span>
+      </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <!-- <section class="info-section" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>We'd love to hear from you. Stop by, call, or drop a line!</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>Location</strong>
+            <p>Plot 24, Adeola Odeku, Victoria Island, Lagos.</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <strong>Call Us</strong>
+            <p>+234 813 957 4794</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <strong>Hours</strong>
+            <p>Daily: 11:00 AM – 11:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- About and Contact Us Section -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <span class="sub-heading">Our Story</span>
+            <h2>A Passion for Authentic Flavors</h2>
+            <p>
+              Füd is dedicated to bringing the authentic, rich flavors of native
+              African cuisine to your table. We source local, fresh ingredients
+              to ensure every dish is a celebration of tradition and taste. At
+              Füd, we believe that great food is about more than just taste—it's
+              about heritage. Our chefs use traditional recipes passed down
+              through generations to bring you the true heart of Nigerian
+              cuisine.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card">
+              <h3>10+</h3>
+              <p>Years of Flavor</p>
+            </div>
+            <div class="stat-card">
+              <h3>50+</h3>
+              <p>Daily Specials</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get In Touch</h2>
+          <p>
+            We're located in the heart of Victoria Island. Stop by or give us a
+            call!
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="icon-circle">📍</div>
+            <h3>Location</h3>
+            <p>Plot 24, Adeola Odeku, Victoria Island, Lagos.</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon-circle">📞</div>
+            <h3>Call Us</h3>
+            <p>+234 813 957 4794</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="icon-circle">⏰</div>
+            <h3>Hours</h3>
+            <p>Daily: 11:00 AM – 10:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="menu-footer">
+      <p>&copy; 2025 Füd. All rights reserved.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/menu.js"></script>
+
+    <!-- Simple JavaScript for the Hamburger and Menu Toggle -->
+    <script>
+      const toggleBtn = document.getElementById("menu-toggle-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // 1. Hamburger Menu Toggle Logic
+      toggleBtn.addEventListener("click", () => {
+        toggleBtn.classList.toggle("active");
+        mobileMenu.classList.toggle("open");
+      });
+
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          toggleBtn.classList.remove("active");
+          mobileMenu.classList.remove("open");
+        });
+      });
+    </script>
+  </body>
+</html>

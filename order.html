@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place Order</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link
+      rel="shortcut icon"
+      href="../img/Amala and Vegetable soup.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>🛒 Your Order</h1>
+        <nav>
+          <a href="menu.html">Back to Menu</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="order-container">
+        <div class="cart-section">
+          <h2>Cart Items</h2>
+          <div id="cart-items">
+            <p class="empty-cart">
+              Your cart is empty. <a href="menu.html">Browse menu</a>
+            </p>
+          </div>
+          <div class="cart-summary">
+            <h3>Total: ₦<span id="cart-total">0.00</span></h3>
+          </div>
+        </div>
+
+        <div class="checkout-section">
+          <h2>Customer Information</h2>
+          <form id="checkout-form">
+            <label>Name:</label>
+            <input type="text" id="customer-name" required />
+
+            <label>Phone (numbers only):</label>
+            <input
+              type="tel"
+              id="customer-phone"
+              pattern="[0-9]+"
+              title="Please enter numbers only"
+              required
+            />
+
+            <button type="submit" class="btn btn-success">Place Order</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="order-success" class="success-message" style="display: none">
+        <h2>✅ Order Placed Successfully!</h2>
+        <p>Your order ID: <strong id="order-id"></strong></p>
+        <p>We'll contact you at <strong id="confirm-phone"></strong></p>
+        <button
+          onclick="window.location.href = 'menu.html'"
+          class="btn btn-primary"
+        >
+          Back to Menu
+        </button>
+      </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/order.js"></script>
+  </body>
+</html>

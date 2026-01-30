@@ -1,0 +1,249 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Füd Restaurant Favicon Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        color: #667eea;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+      }
+      .preview {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        margin: 40px 0;
+        flex-wrap: wrap;
+      }
+      .icon-preview {
+        text-align: center;
+        background: #f7fafc;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .icon-preview h3 {
+        color: #667eea;
+        margin-top: 0;
+        font-size: 14px;
+      }
+      canvas {
+        border: 3px solid #667eea;
+        border-radius: 8px;
+        margin: 10px 0;
+        background: white;
+      }
+      .download-btn {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+      .download-btn:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+      }
+      .instructions {
+        background: #f7fafc;
+        padding: 25px;
+        border-radius: 10px;
+        margin-top: 30px;
+        border-left: 4px solid #667eea;
+      }
+      .instructions h3 {
+        color: #667eea;
+        margin-top: 0;
+      }
+      .instructions code {
+        background: #e0e7ff;
+        padding: 3px 8px;
+        border-radius: 4px;
+        color: #667eea;
+        font-family: "Courier New", monospace;
+      }
+      .instructions ol {
+        line-height: 2;
+      }
+      .instructions li {
+        margin-bottom: 10px;
+      }
+      .download-all {
+        text-align: center;
+        margin: 30px 0;
+      }
+      .download-all button {
+        background: #48bb78;
+        padding: 15px 40px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .download-all button:hover {
+        background: #38a169;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🍽️ Füd Restaurant Favicon</h1>
+      <p class="subtitle">Your custom favicon is ready to download!</p>
+
+      <div class="preview">
+        <div class="icon-preview">
+          <h3>16x16 (Browser Tab)</h3>
+          <canvas id="favicon16" width="16" height="16"></canvas>
+          <br />
+          <button class="download-btn" onclick="downloadFavicon(16)">
+            Download 16x16
+          </button>
+        </div>
+
+        <div class="icon-preview">
+          <h3>32x32 (Standard Favicon)</h3>
+          <canvas id="favicon32" width="32" height="32"></canvas>
+          <br />
+          <button class="download-btn" onclick="downloadFavicon(32)">
+            Download 32x32
+          </button>
+        </div>
+
+        <div class="icon-preview">
+          <h3>180x180 (Apple Touch)</h3>
+          <canvas id="favicon180" width="180" height="180"></canvas>
+          <br />
+          <button class="download-btn" onclick="downloadFavicon(180)">
+            Download 180x180
+          </button>
+        </div>
+      </div>
+
+      <div class="download-all">
+        <button class="download-btn" onclick="downloadAll()">
+          📥 Download All Sizes
+        </button>
+      </div>
+
+      <div class="instructions">
+        <h3>📋 How to Add Favicon to Your Website</h3>
+        <ol>
+          <li>Download the favicon files using the buttons above</li>
+          <li>
+            Create a folder named <code>images</code> or <code>assets</code> in
+            your project root
+          </li>
+          <li>Copy the downloaded favicon files to that folder</li>
+          <li>
+            Add these lines to the <code>&lt;head&gt;</code> section of your
+            HTML files:
+          </li>
+        </ol>
+
+        <pre
+          style="
+            background: #2d3748;
+            color: #e0e7ff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+          "
+        ><code>&lt;!-- Favicon Links --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png"&gt;</code></pre>
+
+        <p><strong>Files to add this to:</strong></p>
+        <ul>
+          <li><code>index.html</code></li>
+          <li><code>admin-login.html</code></li>
+          <li><code>admin.html</code></li>
+          <li><code>order.html</code></li>
+          <li><code>feedback.html</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Draw favicon at different sizes
+      function drawFavicon(canvas, size) {
+        const ctx = canvas.getContext("2d");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, size, size);
+
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, size, size);
+        gradient.addColorStop(0, "#667eea");
+        gradient.addColorStop(1, "#764ba2");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, size, size);
+
+        // Draw "F" letter
+        ctx.fillStyle = "white";
+        ctx.font = `bold ${size * 0.65}px Arial, sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("F", size / 2, size / 2);
+      }
+
+      // Initialize all canvases
+      function initializeFavicons() {
+        drawFavicon(document.getElementById("favicon16"), 16);
+        drawFavicon(document.getElementById("favicon32"), 32);
+        drawFavicon(document.getElementById("favicon180"), 180);
+      }
+
+      // Download individual favicon
+      function downloadFavicon(size) {
+        const canvas = document.getElementById(`favicon${size}`);
+        const link = document.createElement("a");
+
+        let filename;
+        if (size === 180) {
+          filename = "apple-touch-icon.png";
+        } else {
+          filename = `favicon-${size}x${size}.png`;
+        }
+
+        link.download = filename;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+
+      // Download all sizes
+      function downloadAll() {
+        setTimeout(() => downloadFavicon(16), 100);
+        setTimeout(() => downloadFavicon(32), 300);
+        setTimeout(() => downloadFavicon(180), 500);
+
+        alert(
+          "✅ All favicon files will download shortly!\n\nYou will receive:\n- favicon-16x16.png\n- favicon-32x32.png\n- apple-touch-icon.png",
+        );
+      }
+
+      // Initialize on load
+      window.onload = initializeFavicons;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Favicon Links -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../img/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../img/apple-touch-icon.png"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card-wrapper">
+        <div class="login-card">
+          <h1>🔐 Admin Login</h1>
+          <p>Please enter your credentials to access the admin dashboard</p>
+
+          <form id="admin-login-form">
+            <div class="form-group">
+              <label>Username:</label>
+              <input
+                type="text"
+                id="admin-username"
+                required
+                autocomplete="username"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                id="admin-password"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Login
+            </button>
+          </form>
+
+          <div id="login-error" class="error-message" style="display: none">
+            ❌ Invalid username or password!
+          </div>
+
+          <div class="login-footer">
+            <a href="menu.html">← Back to Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple client-side authentication (for demo purposes)
+      // In production, use server-side authentication with hashed passwords
+      const ADMIN_CREDENTIALS = {
+        username: "admin",
+        password: "admin123",
+      };
+
+      document
+        .getElementById("admin-login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("admin-username").value;
+          const password = document.getElementById("admin-password").value;
+
+          if (
+            username === ADMIN_CREDENTIALS.username &&
+            password === ADMIN_CREDENTIALS.password
+          ) {
+            // Store auth token in sessionStorage
+            sessionStorage.setItem("adminAuthenticated", "true");
+            window.location.href = "admin.html";
+          } else {
+            document.getElementById("login-error").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("login-error").style.display = "none";
+            }, 3000);
+          }
+        });
+    </script>
+  </body>
+</html>

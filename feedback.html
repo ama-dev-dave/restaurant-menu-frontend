@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Feedback</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link
+      rel="shortcut icon"
+      href="../img/Indomie Noodles.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>💬 Customer Feedback</h1>
+        <nav>
+          <a href="menu.html">Back to Menu</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="feedback-form-section">
+        <h2>Share Your Experience</h2>
+        <form id="feedback-form">
+          <label>Your Name:</label>
+          <input type="text" id="feedback-name" required />
+
+          <label>Rating:</label>
+          <div class="star-rating">
+            <span class="star" data-rating="1">☆</span>
+            <span class="star" data-rating="2">☆</span>
+            <span class="star" data-rating="3">☆</span>
+            <span class="star" data-rating="4">☆</span>
+            <span class="star" data-rating="5">☆</span>
+          </div>
+
+          <label>Comments:</label>
+          <textarea id="feedback-comment" rows="5" required></textarea>
+
+          <button type="submit" class="btn btn-success">Submit Feedback</button>
+        </form>
+
+        <div
+          id="feedback-success"
+          class="success-message"
+          style="display: none"
+        >
+          <h3>✅ Thank you for your feedback!</h3>
+          <button
+            onclick="window.location.href = 'menu.html'"
+            class="btn btn-primary"
+          >
+            Back to Menu
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/feedback.js"></script>
+  </body>
+</html>

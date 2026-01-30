@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Füd • Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Favicon Links -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../img/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../img/apple-touch-icon.png"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="orange-header">🔧 Füd - Admin Dashboard</h1>
+        <nav>
+          <a href="menu.html">Back to Menu</a>
+          <a href="#" onclick="logout()" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="menu">Manage Menu</button>
+        <button class="tab-btn" data-tab="categories">Manage Categories</button>
+        <button class="tab-btn" data-tab="orders">View Orders</button>
+        <button class="tab-btn" data-tab="feedback">View Feedback</button>
+      </div>
+
+      <!-- Menu Management Tab -->
+      <section id="menu-tab" class="tab-content active">
+        <div class="admin-header">
+          <h2>Menu Items</h2>
+          <button id="add-item-btn" class="btn btn-primary">
+            + Add New Item
+          </button>
+        </div>
+
+        <div id="add-item-form" class="form-modal" style="display: none">
+          <div class="modal-content">
+            <h3 id="form-title">Add New Menu Item</h3>
+            <form id="menu-item-form">
+              <input type="hidden" id="item-id" />
+
+              <label>Category:</label>
+              <select id="item-category" required>
+                <option value="">Select Category</option>
+              </select>
+
+              <label>Name:</label>
+              <input type="text" id="item-name" required />
+
+              <label>Description:</label>
+              <textarea id="item-description" rows="3" required></textarea>
+
+              <label>Price (₦):</label>
+              <input
+                type="text"
+                id="item-price"
+                pattern="[0-9.]+"
+                title="Please enter numbers only"
+                required
+              />
+
+              <label>Image URL:</label>
+              <input type="url" id="item-image" />
+
+              <label>
+                <input type="checkbox" id="item-available" checked />
+                Available
+              </label>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" id="cancel-btn" class="btn btn-secondary">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Mobile-friendly menu items display -->
+        <div id="menu-items-container">
+          <div class="loading">Loading menu items...</div>
+        </div>
+      </section>
+
+      <!-- Categories Management Tab -->
+      <section id="categories-tab" class="tab-content">
+        <div class="admin-header">
+          <h2>Categories</h2>
+          <button id="add-category-btn" class="btn btn-primary">
+            + Add New Category
+          </button>
+        </div>
+
+        <div id="add-category-form" class="form-modal" style="display: none">
+          <div class="modal-content">
+            <h3 id="category-form-title">Add New Category</h3>
+            <form id="category-form">
+              <input type="hidden" id="category-id" />
+
+              <label>Category Name:</label>
+              <input type="text" id="category-name" required />
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button
+                  type="button"
+                  id="cancel-category-btn"
+                  class="btn btn-secondary"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="categories-grid" id="categories-grid">
+          <div class="loading">Loading categories...</div>
+        </div>
+      </section>
+
+      <!-- Orders Tab -->
+      <section id="orders-tab" class="tab-content">
+        <h2>Customer Orders</h2>
+        <button
+          onclick="loadOrders()"
+          class="btn btn-primary"
+          style="margin-bottom: 1rem"
+        >
+          Refresh Orders
+        </button>
+
+        <div id="orders-list" class="orders-container">
+          <div class="loading">Loading orders...</div>
+        </div>
+      </section>
+
+      <!-- Feedback Tab -->
+      <section id="feedback-tab" class="tab-content">
+        <h2>Customer Feedback</h2>
+        <div id="feedback-list" class="feedback-container">
+          <div class="loading">Loading feedback...</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Custom Delete Confirmation Modal -->
+    <div id="delete-modal" class="delete-modal" style="display: none">
+      <div class="delete-modal-content">
+        <div class="delete-icon">⚠️</div>
+        <h3 id="delete-modal-title">Confirm Deletion</h3>
+        <p id="delete-modal-message">
+          Are you sure you want to delete this item?
+        </p>
+        <div class="delete-modal-actions">
+          <button id="confirm-delete-btn" class="btn btn-danger">
+            Yes, Delete
+          </button>
+          <button id="cancel-delete-btn" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Toast Notification -->
+    <div id="admin-toast" class="toast-notification">
+      <div class="toast-content">
+        <span class="toast-icon">✅</span>
+        <span id="admin-toast-message"></span>
+      </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+      // Check authentication on page load
+      if (!sessionStorage.getItem("adminAuthenticated")) {
+        window.location.href = "admin-login.html";
+      }
+
+      function logout() {
+        sessionStorage.removeItem("adminAuthenticated");
+        window.location.href = "admin-login.html";
+      }
+    </script>
+  </body>
+</html>
