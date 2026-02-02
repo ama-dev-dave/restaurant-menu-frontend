@@ -129,7 +129,7 @@ function showToast(message) {
   messageElement.textContent = message;
   toast.classList.add("show");
 
-  // Auto hide after 3 seconds
+  // Auto hide after 2 seconds
   setTimeout(() => {
     toast.classList.remove("show");
   }, 2000);
@@ -137,7 +137,6 @@ function showToast(message) {
 
 function updateCartCount() {
   const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-  // Use querySelectorAll to find all count spans (both desktop and mobile)
   const countElements = document.querySelectorAll("#cart-count");
 
   countElements.forEach((el) => {
@@ -149,3 +148,4 @@ function updateCartCount() {
 if (document.getElementById("menu-grid")) {
   loadMenu();
 }
+
