@@ -132,15 +132,17 @@ function showToast(message) {
   // Auto hide after 3 seconds
   setTimeout(() => {
     toast.classList.remove("show");
-  }, 3000);
+  }, 2000);
 }
 
 function updateCartCount() {
   const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const countElement = document.getElementById("cart-count");
-  if (countElement) {
-    countElement.textContent = count;
-  }
+  // Use querySelectorAll to find all count spans (both desktop and mobile)
+  const countElements = document.querySelectorAll("#cart-count");
+
+  countElements.forEach((el) => {
+    el.textContent = count;
+  });
 }
 
 // Initialize
