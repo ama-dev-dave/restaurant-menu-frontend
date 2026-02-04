@@ -386,7 +386,7 @@ nav {
 
 .menu-item img {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -862,3 +862,4 @@ form select:focus {
   color: #667eea;
   text-decoration: none;
 }
+
